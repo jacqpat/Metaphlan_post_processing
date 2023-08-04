@@ -1,0 +1,10 @@
+FIRST STEP:
+python3 .\pyscripts\metamerged2csv.py -i .\examples2\merged_abundance_table_test.txt -o .\examples2\1_metamerged2csv_output\merged_abundance_table_test.csv -s ";" 
+FIRST STEP FOR ONE TAXONOMIC LEVEL:
+python3 .\pyscripts\metamerged2csv.py -i .\examples2\0_original_data\merged_abundance_table_test.txt -o .\examples2\1_metamerged2csv_output\merged_abundance_table_test_species_only.csv -s ";" -t "Species"
+SECOND STEP:
+python3 .\pyscripts\merge_data_abundance_tables.py -i .\examples2\1_metamerged2csv_output\merged_abundance_table_test.csv -d .\examples2\0_original_data\Data1_samples.csv -o .\examples2\Data2_samples_with_conta_abundance.csv -s ';' -h 0
+THIRD STEP (FOR ONLY ONE TAXONOMIC LEVEL):
+python3 .\pyscripts\barh_taxa.py -i .\examples2\2_merge_data_abundance_tables_output\Data2_samples_species_with_conta_abundance.csv -r .\examples2\0_original_data\samples_read.csv  -o .\examples2\3_barh_taxa_output\barh_test.png -s ';' -d 23
+FOURTH STEP (FOR EVERY TAXONOMIC LEVEL:
+python3 .\pyscripts\dendrogram.py -i .\examples2\2_merge_data_abundance_tables_output\Data2_samples_with_conta_abundance.csv -o .\examples2\4_dendrogram_output\dendro.png -s ';' -d 23 -z Site -x Province

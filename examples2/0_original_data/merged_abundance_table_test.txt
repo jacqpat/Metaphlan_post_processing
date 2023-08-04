@@ -1,0 +1,12 @@
+#mpa_vOct22_CHOCOPhlAnSGB_202212
+clade_name	SAMPLE-1	SAMPLE-2	SAMPLE-3
+k__Bacteria	100.0	100.0	100.0
+k__Bacteria|p__Proteobacteria	100.0	100.0	100.0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria	100.0	100.0	100.0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales	100.0	100.0	100.0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Comamonadaceae	100.0	100.0	100.0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Comamonadaceae|g__Comamonas	100.0	100.0	100.0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Comamonadaceae|g__Comamonas|s__Comamonas_thiooxydans	100.0	2.26699	100.0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Comamonadaceae|g__Comamonas|s__Comamonas_thiooxydans|t__SGB12682	100.0	2.26699	100.0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Comamonadaceae|g__Comamonas|s__Comamonas_secondari	0.0	97.73301	0.0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Comamonadaceae|g__Comamonas|s__Comamonas_secondari|t__MGBXXX1	0.0	97.73301	0.0
