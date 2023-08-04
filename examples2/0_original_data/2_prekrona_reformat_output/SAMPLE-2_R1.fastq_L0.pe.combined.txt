@@ -1,2 +1,0 @@
-2.26699	Bacteria	Proteobacteria	Betaproteobacteria	Burkholderiales	Comamonadaceae	Comamonas	Comamonas_thiooxydans	SGB12682
-97.73301	Bacteria	Proteobacteria	Betaproteobacteria	Burkholderiales	Comamonadaceae	Comamonas	Comamonas_thiooxydans	MGBXXX1
