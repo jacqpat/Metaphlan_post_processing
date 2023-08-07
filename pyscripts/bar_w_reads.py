@@ -28,6 +28,7 @@ def main():
     parser.add_option( '-o', '--output', dest='output', default='', action='store', help='The path to the png output' )
     parser.add_option('-s', '--sep', dest='separator', default=',', action='store', help='By default, the output separator is a standard ","')
     parser.add_option('-r', '--reads', dest='reads', default='', action='store', help='The input Dataset with the number of reads treated by Metaphlan')
+    parser.add_option('-d', '--data', dest='data_column', default=0, action='store', help='WARNING: every column after this index will be considered part of the dataset')
     parser.add_option('-x', '--index', dest='index_column', default='Sample', action='store', help='Name of the column to use as an index')
     parser.add_option('-y', '--print', dest='print_column', default='Site', action='store', help='Name of the column to show as png')
     ( options, spillover ) = parser.parse_args()
@@ -39,6 +40,7 @@ def main():
     df1 = pd.read_csv(options.input, sep = options.separator, header = 0, index_col = options.index_column)
     # The second dataframe, which hold the number of reads processed for each sample
     df2 = pd.read_csv(options.reads, sep = options.separator, header = 0, index_col = options.index_column)
+    df2_neglen = -abs(len(df2.columns))
     # Extract all the sites in the dataframe into a list
     sites = list(set(df1[options.print_column].tolist()))
     for site in sites:
@@ -47,7 +49,7 @@ def main():
         # We merge the subframe with the second dataframe
         df3 = pd.merge(sf1, df2, how='inner', on = options.index_column)
         # We convert the % into fractions
-        df4 = (df3.iloc[:,23:-5]/100)
+        df4 = (df3.iloc[:,int(options.data_column):df2_neglen]/100)
         # We multiply the fractions by the number of processed reads to get the number of reads of each contaminant for each sample
         df4 = df4.multiply(df3['Processed reads'],axis="index")
         # Get rid of contaminants with no read in any sample
