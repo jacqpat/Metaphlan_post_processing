@@ -14,4 +14,7 @@ total columns. Once again, general format given by examples/0_original_data/samp
 All examples of inputs and outputs are given in the "examples" directory. The python scripts used by the pipeline are in the "pyscripts"
 directory.
 
+The pipeline is launched via the bash script "metaphlan_post_process.sh" in "shscripts". In this file you can set the parameters for every step.
+Read the commentaries there for more informations about the role of each parameter.
+
 TO BE CONTINUED
