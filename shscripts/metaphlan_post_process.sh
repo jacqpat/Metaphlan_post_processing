@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # PARAMETERS
 # 1: The output of merge_metaphlan_tables.py, one of the scripts in Metaphlan itself.
 metaphlan_txt="..\examples\merged_abundance_table_test.txt"
