@@ -40,6 +40,7 @@ def main():
     df1['Sample'] = df1['Sample'].str.replace('_','-')
     df2 = pd.read_csv(options.input_data, sep = options.separator)
     df2['Sample'] = df2['Sample'].str.replace('_','-')
+    df2['Sample'] = df2['Sample'].str.replace('-S[0-9]$','',regex=True)
     # merge the two dataframes
     df3 = pd.merge(df2, df1, how = 'inner', on = 'Sample')
     df3.to_csv(options.output, header = True, index = False, sep = options.separator)
