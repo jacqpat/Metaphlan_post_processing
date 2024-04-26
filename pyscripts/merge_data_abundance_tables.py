@@ -41,9 +41,9 @@ def main():
     print(df1)
     df1['Sample'] = df1['Sample'].str.replace('_','-')
     df1['Sample'] = df1['Sample'].str.replace('-S\d+$','',regex=True)
+    df2 = pd.read_csv(options.input_data, sep = options.separator)
     print("Right Dataframe: Dataset")
     print(df2)
-    df2 = pd.read_csv(options.input_data, sep = options.separator)
     df2['Sample'] = df2['Sample'].str.replace('_','-')
     if set(df1['Sample']) == set(df2['Sample']):
         # merge the two dataframes
