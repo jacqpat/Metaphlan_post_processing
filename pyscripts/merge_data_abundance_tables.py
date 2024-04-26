@@ -22,6 +22,16 @@ import optparse as op
 # Make sure the samples in both tables have the SAME NAMES
 # ==============================================================================
 
+def merge_df_to_csv(df1,df2,df1_samples,df2_samples,df3_name,df3_sep):
+    samples = ""
+    if df1_samples == df2_samples:
+        samples = df1_samples
+    else:
+        df2.rename(columns={df2_samples: df1_samples})
+        samples = df1_samples
+    df3 = pd.merge(df2, df1, how = 'inner', on = samples)
+    df3.to_csv(df3_name, header = True, index = False, sep = df3_sep)
+
 def main():
     # Parse Command Line
     parser = op.OptionParser(conflict_handler="resolve")
@@ -39,22 +49,24 @@ def main():
         sys.exit()
     # create dataframes
     df1 = pd.read_csv(options.input_conta, sep = options.separator, header = int(options.header)).dropna().reset_index(drop=True)
-    print("Left Dataframe: Contamination")
-    print(df1)
     df1[options.samples_conta] = df1[options.samples_conta].str.replace('_','-')
     df1[options.samples_conta] = df1[options.samples_conta].str.replace('-S\d+$','',regex=True)
     df2 = pd.read_csv(options.input_data, sep = options.separator)
-    print("Right Dataframe: Dataset")
-    print(df2)
     df2[options.samples_data] = df2[options.samples_data].str.replace('_','-')
-    if set(df1[options.samples_conta]) == set(df2[options.samples_data]):
-        # merge the two dataframes
-        df3 = pd.merge(df2, df1, how = 'inner', on = 'Sample')
-        df3.to_csv(options.output, header = True, index = False, sep = options.separator)
+    # If set of df1 samples different from set of df2 samples
+    if set(df1[options.samples_conta]) != set(df2[options.samples_data]):
+            # Then check if there are any common elements between the two sets
+            common_samples = df2[df2[options.samples_data].isin(df1[options.samples_conta])]
+            common_samples = common_samples[options.samples_data]
+            print("There are", len(common_samples), "samples in common")
+            # If there are none, print error message
+            if len(common_samples) == 0:
+                print("ERROR: there are no common samples between the two dataframes!")
+            # Otherwise, create new dataframe with only those common elements
+            else:
+                df2 = df2[df2[options.samples_data].isin(df1[options.samples_conta])]
     else:
-        print("ERROR: the two dataframes 'samples' columns are different!")
-        print(df1[options.samples_conta].to_list())
-        print(df2[options.samples_data].to_list())
+        merge_df_to_csv(df1,df2,options.output,options.separator)
 
 if __name__ == '__main__':
     main()
