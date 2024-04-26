@@ -37,15 +37,22 @@ def main():
         sys.exit()
     # create dataframes
     df1 = pd.read_csv(options.input_conta, sep = options.separator, header = int(options.header)).dropna().reset_index(drop=True)
+    print("Left Dataframe: Contamination")
+    print(df1)
     df1['Sample'] = df1['Sample'].str.replace('_','-')
     df1['Sample'] = df1['Sample'].str.replace('-S\d+$','',regex=True)
-    print(df1['Sample'].to_list())
+    print("Right Dataframe: Dataset")
+    print(df2)
     df2 = pd.read_csv(options.input_data, sep = options.separator)
     df2['Sample'] = df2['Sample'].str.replace('_','-')
-    print(df2['Sample'].to_list())
-    # merge the two dataframes
-    df3 = pd.merge(df2, df1, how = 'inner', on = 'Sample')
-    df3.to_csv(options.output, header = True, index = False, sep = options.separator)
+    if set(df1['Sample']) == set(df2['Sample']):
+        # merge the two dataframes
+        df3 = pd.merge(df2, df1, how = 'inner', on = 'Sample')
+        df3.to_csv(options.output, header = True, index = False, sep = options.separator)
+    else:
+        print("ERROR: the two dataframes 'samples' columns are different!")
+        print(df1['Sample'].to_list())
+        print(df2['Sample'].to_list())
 
 if __name__ == '__main__':
     main()
