@@ -65,6 +65,8 @@ def main():
             # Otherwise, create new dataframe with only those common elements
             else:
                 df2 = df2[df2[options.samples_data].isin(df1[options.samples_conta])]
+                # And now we can merge
+                merge_df_to_csv(df1,df2,options.samples_conta,options.samples_data,options.output,options.separator)
     else:
         merge_df_to_csv(df1,df2,options.output,options.separator)
 
