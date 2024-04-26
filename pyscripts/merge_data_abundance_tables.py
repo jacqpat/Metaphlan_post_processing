@@ -27,7 +27,12 @@ def merge_df_to_csv(df1,df2,df1_samples,df2_samples,df3_name,df3_sep):
     if df1_samples == df2_samples:
         samples = df1_samples
     else:
-        df2.rename(columns={df2_samples: df1_samples})
+        # check if there are any column in df2 already with the name of df1' column
+        try:
+            df2 = df2.rename(columns={df1_samples: f"{df1_samples}_x"})
+        except:
+            print("Correct dataframes columns names")
+        df2 = df2.rename(columns={df2_samples: df1_samples})
         samples = df1_samples
     df3 = pd.merge(df2, df1, how = 'inner', on = samples)
     df3.to_csv(df3_name, header = True, index = False, sep = df3_sep)
