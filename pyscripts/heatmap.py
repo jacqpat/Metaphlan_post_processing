@@ -39,6 +39,8 @@ for i in categories:
         # Keep only data values
         df_data = df1.loc[:,options.colstart:]
         # Drop columns with only 0
-        df_data = df_data.loc[(df_data!=0).any(axis=0)]
+        df_data = df_data.loc[(df_data!=0).any(axis=1)]
         ax = sns.heatmap(df_data)
+        ax.set_title(i,fontsize=6)
+        ax.set_xlabel()
         plt.show()
