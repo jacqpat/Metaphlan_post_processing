@@ -19,6 +19,10 @@ def main():
     if options.category != "":
         categories = df[options.category].unique()
         # For idx the current iteration n° and item the current item on the list,
+        for idx, item in enumerate(categories):
+            # We create a sub-dataframe
+            df2 = df.loc[df[options.category]] == item
+            print(df2)
         
 
 if __name__ == '__main__':
