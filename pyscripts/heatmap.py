@@ -5,6 +5,17 @@ import seaborn as sns
 from matplotlib import pyplot as plt
 
 # Parse Command Line
+'''
+options are
+--input : the csv table *with* all the datas and all the contaminant proportions
+--sep : the separator of input
+--idx : the column to use as an index for the table. Generally the sample names
+--colstart : the name of the first column after which its all contamination data
+--box : make one graph for each unique value in this column
+
+Ex of a command line:
+python3 .\this\script\heatmap.py -i .\your\file.csv -s ';' -x index_column_name --b categories_column_name
+'''
 parser = op.OptionParser(conflict_handler="resolve")
 parser.add_option( '-i', '--input', dest='input', default='', action='store', help='The input file is a csv table with all the data' )
 parser.add_option('-s', '--sep', dest='separator', default=',', action='store', help='By default, the output separator is a standard ","')

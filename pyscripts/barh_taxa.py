@@ -1,3 +1,7 @@
+'''
+DEPRECIATED BECAUSE BASED AROUND DATA (Processed Reads) OF QUESTIONABLE MEANING
+(Is it the n° of contaminant reads ? Or the n° of reads used as a subset by Metaphlan ? Is it how Metaphlan work ?)
+'''
 # Create a horizontal bargraph from the output of merge_data_abundance.py
 # It'll be a summary of the number of taxa, of the chosen level (kingdom, phylum...)
 # per site in number of reads.
