@@ -21,8 +21,11 @@ def main():
         # For idx the current iteration n° and item the current item on the list,
         for idx, item in enumerate(categories):
             # We create a sub-dataframe
-            df2 = df.loc[df[options.category]] == item
+            df2 = df.loc[df[options.category] == item]
+            df2 = df2.iloc[:,int(options.data_column):]
+            df2 = df2.reset_index().drop(["index"], axis=1)
             print(df2)
+            print(df2.sum())
         
 
 if __name__ == '__main__':
