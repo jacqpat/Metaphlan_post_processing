@@ -5,8 +5,7 @@ import optparse as op
 from matplotlib import pyplot as plt
 
 def mk_plot(df,options,i="0"):
-    df.plot(x = options.index, kind = 'barh', stacked = True, title = "Contamination by CLade", width=1.0, color=cc.glasbey)
-    plt.title("Preponderance of contaminant in each site (%)")
+    df.plot(x = options.index, kind = 'barh', stacked = True, title = "Relative abundance (%) of contaminants in samples", width=1.0, color=cc.b_glasbey_category10)
     plt.yticks(fontsize = 4)
     plt.legend(fontsize= 4)
     plt.tight_layout()
